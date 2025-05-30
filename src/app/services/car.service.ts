@@ -61,14 +61,7 @@ export class CarService {
     // En un entorno real, esto haría una petición HTTP POST
 
 
-    // Clona el objeto y convierte "details" en un string JSON
-    const carToSend = {
-      ...car,
-      details: JSON.stringify(car.details)  // << esta línea es la clave
-    };
-
-    // Asegúrate de NO tener espacio entre la URL y el path
-    return this.http.post<Car>(`${this.apiUrl}/cars`, carToSend);
+    return this.http.post<Car>(`${this.apiUrl}/cars`, car);
 
   }
 }
