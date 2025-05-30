@@ -1,0 +1,144 @@
+/* Contenedor principal del formulario */
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el título principal */
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Estilo para los subtítulos de sección */
+h3 {
+  color: #444;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #007bff;
+}
+
+/* Estilo para cada sección del formulario */
+.form-section {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para cada grupo de campos */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Estilo para las etiquetas de los campos */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Estilo para los campos de entrada */
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Estilo para el estado focus de los campos */
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Estilo para los mensajes de error */
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Contenedor para los checkboxes */
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* Estilo para cada checkbox */
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Estilo para el input checkbox */
+.form-check-input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+}
+
+/* Estilo para la etiqueta del checkbox */
+.form-check-label {
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Estilo para el botón de envío */
+.submit-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Estilo para el hover del botón */
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para el botón deshabilitado */
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Contenedor para mostrar los datos del formulario */
+.form-data {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+/* Estilo para el título de los datos */
+.form-data h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  border-bottom: none;
+}
+
+/* Estilo para el pre que muestra los datos JSON */
+pre {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+} 

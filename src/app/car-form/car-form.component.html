@@ -1,0 +1,251 @@
+<!-- Contenedor principal del formulario -->
+<div class="container">
+  <h2>Formulario de Registro de Auto</h2>
+
+  <!-- Formulario principal con referencia local #carForm y evento submit -->
+  <form #carForm="ngForm" (ngSubmit)="onSubmit()">
+    <!-- Sección de Información Básica -->
+    <div class="form-section">
+      <h3>Información Básica</h3>
+
+      <!-- Campo Email -->
+      <div class="form-group">
+        <label for="email">Email del Propietario:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="car.email"
+          required
+          email
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          #email="ngModel"
+          class="form-control">
+        <!-- Mensajes de error para el email -->
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+          <div *ngIf="email.errors?.['required']">El email es requerido</div>
+          <div *ngIf="email.errors?.['email']">Por favor ingrese un email válido</div>
+          <div *ngIf="email.errors?.['pattern']">El formato del email no es válido</div>
+        </div>
+      </div>
+
+      <!-- Campo Marca -->
+      <div class="form-group">
+        <label for="brand">Marca:</label>
+        <input
+          type="text"
+          id="brand"
+          name="brand"
+          [(ngModel)]="car.brand"
+          required
+          #brand="ngModel"
+          class="form-control">
+        <div *ngIf="brand.invalid && (brand.dirty || brand.touched)" class="error-message">
+          La marca es requerida
+        </div>
+      </div>
+
+      <!-- Campo Modelo -->
+      <div class="form-group">
+        <label for="model">Modelo:</label>
+        <input
+          type="text"
+          id="model"
+          name="model"
+          [(ngModel)]="car.model"
+          required
+          #model="ngModel"
+          class="form-control">
+        <div *ngIf="model.invalid && (model.dirty || model.touched)" class="error-message">
+          El modelo es requerido
+        </div>
+      </div>
+
+      <!-- Campo Año -->
+      <div class="form-group">
+        <label for="year">Año:</label>
+        <input
+          type="number"
+          id="year"
+          name="year"
+          [(ngModel)]="car.year"
+          required
+          min="1900"
+          max="2024"
+          #year="ngModel"
+          class="form-control">
+        <div *ngIf="year.invalid && (year.dirty || year.touched)" class="error-message">
+          Por favor ingrese un año válido entre 1900 y 2024
+        </div>
+      </div>
+
+      <!-- Campo Tipo -->
+      <div class="form-group">
+        <label for="type">Tipo:</label>
+        <select
+          id="type"
+          name="type"
+          [(ngModel)]="car.type"
+          required
+          #type="ngModel"
+          class="form-control">
+          <option value="">Seleccione un tipo</option>
+          <option *ngFor="let type of carTypes" [value]="type.name">{{type.name}}</option>
+        </select>
+        <div *ngIf="type.invalid && (type.dirty || type.touched)" class="error-message">
+          Por favor seleccione un tipo de auto
+        </div>
+      </div>
+
+      <!-- Campo Color -->
+      <div class="form-group">
+        <label for="color">Color:</label>
+        <input
+          type="text"
+          id="color"
+          name="color"
+          [(ngModel)]="car.color"
+          required
+          #color="ngModel"
+          class="form-control">
+        <div *ngIf="color.invalid && (color.dirty || color.touched)" class="error-message">
+          El color es requerido
+        </div>
+      </div>
+
+      <!-- Campo Precio -->
+      <div class="form-group">
+        <label for="price">Precio:</label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          [(ngModel)]="car.price"
+          required
+          min="0"
+          #price="ngModel"
+          class="form-control">
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="error-message">
+          Por favor ingrese un precio válido
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Detalles del Motor -->
+    <div class="form-section" ngModelGroup="details.engine">
+      <h3>Detalles del Motor</h3>
+
+      <!-- Campo Tipo de Motor -->
+      <div class="form-group">
+        <label for="engineType">Tipo de Motor:</label>
+        <select
+          id="engineType"
+          name="type"
+          [(ngModel)]="car.details.engine.type"
+          required
+          #engineType="ngModel"
+          class="form-control">
+          <option value="">Seleccione tipo de motor</option>
+          <option *ngFor="let type of engineTypes" [value]="type">{{type}}</option>
+        </select>
+        <div *ngIf="engineType.invalid && (engineType.dirty || engineType.touched)" class="error-message">
+          Por favor seleccione un tipo de motor
+        </div>
+      </div>
+
+      <!-- Campo Caballos de Fuerza -->
+      <div class="form-group">
+        <label for="horsepower">Caballos de Fuerza:</label>
+        <input
+          type="number"
+          id="horsepower"
+          name="horsepower"
+          [(ngModel)]="car.details.engine.horsepower"
+          required
+          min="0"
+          #horsepower="ngModel"
+          class="form-control">
+        <div *ngIf="horsepower.invalid && (horsepower.dirty || horsepower.touched)" class="error-message">
+          Por favor ingrese un valor válido de caballos de fuerza
+        </div>
+      </div>
+
+      <!-- Campo Transmisión -->
+      <div class="form-group">
+        <label for="transmission">Transmisión:</label>
+        <select
+          id="transmission"
+          name="transmission"
+          [(ngModel)]="car.details.engine.transmission"
+          required
+          #transmission="ngModel"
+          class="form-control">
+          <option value="">Seleccione tipo de transmisión</option>
+          <option *ngFor="let type of transmissionTypes" [value]="type">{{type}}</option>
+        </select>
+        <div *ngIf="transmission.invalid && (transmission.dirty || transmission.touched)" class="error-message">
+          Por favor seleccione un tipo de transmisión
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Características -->
+    <div class="form-section" ngModelGroup="details.features">
+      <h3>Características</h3>
+      <div class="checkbox-group">
+        <!-- Checkbox Aire Acondicionado -->
+        <div class="form-check">
+          <input
+            type="checkbox"
+            id="airConditioning"
+            name="airConditioning"
+            [(ngModel)]="car.details.features.airConditioning"
+            class="form-check-input">
+          <label class="form-check-label" for="airConditioning">Aire Acondicionado</label>
+        </div>
+
+        <!-- Checkbox Bluetooth -->
+        <div class="form-check">
+          <input
+            type="checkbox"
+            id="bluetooth"
+            name="bluetooth"
+            [(ngModel)]="car.details.features.bluetooth"
+            class="form-check-input">
+          <label class="form-check-label" for="bluetooth">Bluetooth</label>
+        </div>
+
+        <!-- Checkbox Navegación -->
+        <div class="form-check">
+          <input
+            type="checkbox"
+            id="navigation"
+            name="navigation"
+            [(ngModel)]="car.details.features.navigation"
+            class="form-check-input">
+          <label class="form-check-label" for="navigation">Sistema de Navegación</label>
+        </div>
+
+        <!-- Checkbox Techo Solar -->
+        <div class="form-check">
+          <input
+            type="checkbox"
+            id="sunroof"
+            name="sunroof"
+            [(ngModel)]="car.details.features.sunroof"
+            class="form-check-input">
+          <label class="form-check-label" for="sunroof">Techo Solar</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón de envío del formulario -->
+    <button type="submit" [disabled]="carForm.invalid" class="submit-button">Enviar</button>
+  </form>
+
+  <!-- Sección que muestra los datos del formulario después del envío -->
+  <div *ngIf="carForm.submitted" class="form-data">
+    <h3>Datos del Formulario:</h3>
+    <pre>{{car | json}}</pre>
+  </div>
+</div>
