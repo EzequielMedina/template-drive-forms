@@ -22,11 +22,19 @@
           #email="ngModel"
           class="form-control">
         <!-- Mensajes de error para el email -->
-        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
-          <div *ngIf="email.errors?.['required']">El email es requerido</div>
-          <div *ngIf="email.errors?.['email']">Por favor ingrese un email válido</div>
-          <div *ngIf="email.errors?.['pattern']">El formato del email no es válido</div>
-        </div>
+        @if (email.invalid && (email.dirty || email.touched)) {
+          <div class="error-message">
+            @if (email.errors?.['required']) {
+              <div>El email es requerido</div>
+            }
+            @if (email.errors?.['email']) {
+              <div>Por favor ingrese un email válido</div>
+            }
+            @if (email.errors?.['pattern']) {
+              <div>El formato del email no es válido</div>
+            }
+          </div>
+        }
       </div>
 
       <!-- Campo Marca -->
@@ -40,9 +48,11 @@
           required
           #brand="ngModel"
           class="form-control">
-        <div *ngIf="brand.invalid && (brand.dirty || brand.touched)" class="error-message">
-          La marca es requerida
-        </div>
+        @if (brand.invalid && (brand.dirty || brand.touched)) {
+          <div class="error-message">
+            La marca es requerida
+          </div>
+        }
       </div>
 
       <!-- Campo Modelo -->
@@ -56,9 +66,11 @@
           required
           #model="ngModel"
           class="form-control">
-        <div *ngIf="model.invalid && (model.dirty || model.touched)" class="error-message">
-          El modelo es requerido
-        </div>
+        @if (model.invalid && (model.dirty || model.touched)) {
+          <div class="error-message">
+            El modelo es requerido
+          </div>
+        }
       </div>
 
       <!-- Campo Año -->
@@ -74,9 +86,11 @@
           max="2024"
           #year="ngModel"
           class="form-control">
-        <div *ngIf="year.invalid && (year.dirty || year.touched)" class="error-message">
-          Por favor ingrese un año válido entre 1900 y 2024
-        </div>
+        @if (year.invalid && (year.dirty || year.touched)) {
+          <div class="error-message">
+            Por favor ingrese un año válido entre 1900 y 2024
+          </div>
+        }
       </div>
 
       <!-- Campo Tipo -->
@@ -90,11 +104,15 @@
           #type="ngModel"
           class="form-control">
           <option value="">Seleccione un tipo</option>
-          <option *ngFor="let type of carTypes" [value]="type.name">{{type.name}}</option>
+          @for (type of carTypes; track type) {
+            <option [value]="type.name">{{type.name}}</option>
+          }
         </select>
-        <div *ngIf="type.invalid && (type.dirty || type.touched)" class="error-message">
-          Por favor seleccione un tipo de auto
-        </div>
+        @if (type.invalid && (type.dirty || type.touched)) {
+          <div class="error-message">
+            Por favor seleccione un tipo de auto
+          </div>
+        }
       </div>
 
       <!-- Campo Color -->
@@ -108,9 +126,11 @@
           required
           #color="ngModel"
           class="form-control">
-        <div *ngIf="color.invalid && (color.dirty || color.touched)" class="error-message">
-          El color es requerido
-        </div>
+        @if (color.invalid && (color.dirty || color.touched)) {
+          <div class="error-message">
+            El color es requerido
+          </div>
+        }
       </div>
 
       <!-- Campo Precio -->
@@ -125,9 +145,11 @@
           min="0"
           #price="ngModel"
           class="form-control">
-        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="error-message">
-          Por favor ingrese un precio válido
-        </div>
+        @if (price.invalid && (price.dirty || price.touched)) {
+          <div class="error-message">
+            Por favor ingrese un precio válido
+          </div>
+        }
       </div>
     </div>
 
@@ -146,11 +168,15 @@
           #engineType="ngModel"
           class="form-control">
           <option value="">Seleccione tipo de motor</option>
-          <option *ngFor="let type of engineTypes" [value]="type">{{type}}</option>
+          @for (type of engineTypes; track type) {
+            <option [value]="type">{{type}}</option>
+          }
         </select>
-        <div *ngIf="engineType.invalid && (engineType.dirty || engineType.touched)" class="error-message">
-          Por favor seleccione un tipo de motor
-        </div>
+        @if (engineType.invalid && (engineType.dirty || engineType.touched)) {
+          <div class="error-message">
+            Por favor seleccione un tipo de motor
+          </div>
+        }
       </div>
 
       <!-- Campo Caballos de Fuerza -->
@@ -165,9 +191,11 @@
           min="0"
           #horsepower="ngModel"
           class="form-control">
-        <div *ngIf="horsepower.invalid && (horsepower.dirty || horsepower.touched)" class="error-message">
-          Por favor ingrese un valor válido de caballos de fuerza
-        </div>
+        @if (horsepower.invalid && (horsepower.dirty || horsepower.touched)) {
+          <div class="error-message">
+            Por favor ingrese un valor válido de caballos de fuerza
+          </div>
+        }
       </div>
 
       <!-- Campo Transmisión -->
@@ -181,11 +209,15 @@
           #transmission="ngModel"
           class="form-control">
           <option value="">Seleccione tipo de transmisión</option>
-          <option *ngFor="let type of transmissionTypes" [value]="type">{{type}}</option>
+          @for (type of transmissionTypes; track type) {
+            <option [value]="type">{{type}}</option>
+          }
         </select>
-        <div *ngIf="transmission.invalid && (transmission.dirty || transmission.touched)" class="error-message">
-          Por favor seleccione un tipo de transmisión
-        </div>
+        @if (transmission.invalid && (transmission.dirty || transmission.touched)) {
+          <div class="error-message">
+            Por favor seleccione un tipo de transmisión
+          </div>
+        }
       </div>
     </div>
 
@@ -244,8 +276,10 @@
   </form>
 
   <!-- Sección que muestra los datos del formulario después del envío -->
-  <div *ngIf="carForm.submitted" class="form-data">
-    <h3>Datos del Formulario:</h3>
-    <pre>{{car | json}}</pre>
-  </div>
+  @if (carForm.submitted) {
+    <div class="form-data">
+      <h3>Datos del Formulario:</h3>
+      <pre>{{car | json}}</pre>
+    </div>
+  }
 </div>
